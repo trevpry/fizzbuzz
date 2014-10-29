@@ -1,22 +1,40 @@
 $(document).ready(function(){
     var i = 1;
     var output;
+    var top;
 
-    while (i <= 100){
-        output = '';
+    $(document).on('click', '.submit', function(){
+        top = getTop();
 
-        if (i%3 === 0){
-            output += 'fizz ';
+        if (isNaN(top) || (top % 1) != 0){
+            alert('Please enter a valid number');
+        } else {
+            $('.top').val('');
+            fizzBuzz(+top);
         }
-        if (i%5 === 0){
-            output += 'buzz';
-        }
-        if (output === ''){
-            output = i;
-        }
+    });
 
-        i++;
+    function fizzBuzz(top) {
+        while (i <= top) {
+            output = '';
 
-        $('body').append(output + '<br>')
+            if (i % 3 === 0) {
+                output += 'fizz ';
+            }
+            if (i % 5 === 0) {
+                output += 'buzz';
+            }
+            if (output === '') {
+                output = i;
+            }
+
+            i++;
+
+            $('.fizzbuzz').append(output + '<br>')
+        }
+    }
+
+    function getTop(){
+        return $('.top').val();
     }
 });
